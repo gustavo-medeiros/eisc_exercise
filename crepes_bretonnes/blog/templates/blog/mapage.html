@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Ma page d'accueil{% endblock %}
+{% block content %}
+    <h2>Bienvenue !</h2>
+    <p>
+        {# <img src="{% static 'blog/crepes.jpg' %}" alt="Mon image" /> #}
+        <img src="{% static 'img/header.jpg' %}" alt="Mon image" /> <br/>
+       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rhoncus
+       massa non tortor. Vestibulum diam diam, posuere in viverra in,
+       ullamcorper et libero. Donec eget libero quis risus congue imperdiet ac
+       id lectus. Nam euismod cursus arcu, et consequat libero ullamcorper sit
+       amet.
+    </p>
+{% endblock %}
+</body>
+</html>

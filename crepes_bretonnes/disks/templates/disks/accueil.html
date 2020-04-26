@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="{% url 'search' %}" method="get">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Rechercher" />
+</form>
+
+<h1>Albums</h1>
+
+{% for album in derniers_albums %}
+    <div class="album">
+    	<h3><a href="{% url 'show_album' id=album.id %}">{{ album.Title }}</a></h3>
+    </div>
+{% empty %}
+    <p>Aucun article.</p>
+{% endfor %}
+
+</body>
+</html>

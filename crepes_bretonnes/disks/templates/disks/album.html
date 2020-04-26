@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>{{ album.Title }}</h1>
+    <p> Artiste: {{album.artist.Name}} <br> Pistes</p>
+    <span>Nom</span><span>Compositeur</span><span>Durée</span><span>Prix unitaire</span>
+
+    {% for track in album.track_set.all %}
+        <div class="track">
+            <span>{{track.Name}}</span>
+            <span>{{track.Composer}}</span>
+            <span>{{track.Milliseconds}} ms</span>
+            <span>{{track.UnitPrice}} $</span>
+        </div>
+    {% empty %}
+        <p>Aucun track.</p>
+    {% endfor %}
+</body>
+</html>
