@@ -16,8 +16,12 @@ def accueil(request):
 
 
 def show_album(request, id):
+    form = SearchForm(request.POST or None)
+    if form.is_valid():
+        sujet = form.cleaned_data['sujet']
+    derniers_albums = Album.objects.all()  # Nous sélectionnons tous nos articles
     album = get_object_or_404(Album, id=id)
-    return render(request, 'disks/album.html', {'album': album})
+    return render(request, 'disks/album.html', locals())
 
 
 def searching(request):

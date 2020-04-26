@@ -1,23 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:border="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        * {
+          box-sizing: border-box;
+        }
+    </style>
 </head>
 <body>
+{% extends "disks/accueil.html" %}
+{% block album %}
     <h1>{{ album.Title }}</h1>
-    <p> Artiste: {{album.artist.Name}} <br> Pistes</p>
-    <span>Nom</span><span>Compositeur</span><span>Durée</span><span>Prix unitaire</span>
+<p> <span style="font-weight:bold">Artiste:</span> {{album.artist.Name}} <br> <span style="font-weight:bold">Pistes</span></p>
+    <span style="border:1px solid red;width:35%;float:left;font-weight:bold">Nom</span>
+    <span style="border:1px solid red;width:45%;float:left;font-weight:bold">Compositeur</span>
+    <span style="border:1px solid red;width:10%;float:left;font-weight:bold">Durée</span>
+    <span style="border:1px solid red;width:10%;float:left;font-weight:bold">Prix unitaire </span>
 
     {% for track in album.track_set.all %}
-        <div class="track">
-            <span>{{track.Name}}</span>
-            <span>{{track.Composer}}</span>
-            <span>{{track.Milliseconds}} ms</span>
-            <span>{{track.UnitPrice}} $</span>
+        <div>
+            <div style="border:1px solid red;width:35%;float:left;padding:2px">{{track.Name}}</div>
+            <div style="border:1px solid red;width:45%;float:left;padding:2px">{{track.Composer}}</div>
+            <div style="border:1px solid red;width:10%;float:left;padding:2px">{{track.Milliseconds}} ms</div>
+            <div style="border:1px solid red;width:10%;float:left;padding:2px">{{track.UnitPrice}} $</div>
         </div>
     {% empty %}
         <p>Aucun track.</p>
     {% endfor %}
+
+{% endblock %}
 </body>
 </html>

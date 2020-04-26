@@ -3,24 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .header {
+      border: 1px solid red;
+      padding: 15px;
+    }
+
+    .menu {
+      width: 25%;
+      float: left;
+      padding: 15px;
+      border: 1px solid red;
+    }
+
+    .main {
+      width: 75%;
+      float: left;
+      padding: 15px;
+      border: 1px solid red;
+    }
+</style>
 </head>
 <body>
 
-<form action="{% url 'search' %}" method="get">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Rechercher" />
-</form>
+<div class="header">
+    <form action="{% url 'search' %}" method="get">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Rechercher" />
+    </form>
+</div>
 
-<h1>Albums</h1>
 
-{% for album in derniers_albums %}
-    <div class="album">
-    	<h3><a href="{% url 'show_album' id=album.id %}">{{ album.Title }}</a></h3>
-    </div>
-{% empty %}
-    <p>Aucun article.</p>
-{% endfor %}
+<div class="menu">
+    <h1>Albums</h1>
+
+    {% for album in derniers_albums %}
+        <div class="album">
+            <h3><a href="{% url 'show_album' id=album.id %}">{{ album.Title }}</a></h3>
+        </div>
+    {% empty %}
+        <p>Aucun article.</p>
+    {% endfor %}
+</div>
+
+<div class="main">
+    {% block album %}{% endblock %}
+</div>
 
 </body>
 </html>
