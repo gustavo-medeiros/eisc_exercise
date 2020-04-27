@@ -30,7 +30,7 @@ def searching(request):
     if form.is_valid():
         to_search = form.cleaned_data['sujet']
 
-    derniers_albums = Album.objects.filter(Title__contains=to_search) | Album.objects.filter(
-        track__Name__contains=to_search) | Album.objects.filter(track__Composer__contains=to_search)  # Nous
+    derniers_albums = (Album.objects.filter(Title__contains=to_search) | Album.objects.filter(
+        track__Name__contains=to_search) | Album.objects.filter(track__Composer__contains=to_search)).distinct()  # Nous
     # sélectionnons les albums trouvés
     return render(request, 'disks/accueil.html', locals())
